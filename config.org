@@ -119,23 +119,59 @@
 
 ** Straight
    #+begin_src emacs-lisp
-     (defvar bootstrap-version)
-     (let ((bootstrap-file
-	    (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+	 (defvar bootstrap-version)
+	 (let ((bootstrap-file
+		(expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
 	   (bootstrap-version 5))
-       (unless (file-exists-p bootstrap-file)
-	 (with-current-buffer
-	     (url-retrieve-synchronously
-	      "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-	      'silent 'inhibit-cookies)
-	   (goto-char (point-max))
-	   (eval-print-last-sexp)))
-       (load bootstrap-file nil 'nomessage))
+	   (unless (file-exists-p bootstrap-file)
+		 (with-current-buffer
+			 (url-retrieve-synchronously
+			  "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+			  'silent 'inhibit-cookies)
+		   (goto-char (point-max))
+		   (eval-print-last-sexp)))
+	   (load bootstrap-file nil 'nomessage))
+
    #+end_src
+
+*** Packages
+	#+begin_src emacs-lisp
+	  (straight-use-package 'evil)
+	  (straight-use-package 'w3m)
+	  (straight-use-package 'hydra)
+	  (straight-use-package 'ivy)
+	  (straight-use-package 'counsel)
+	  (straight-use-package 'swiper)
+	  (straight-use-package 'avy)
+	  (straight-use-package 'which-key)
+	  (straight-use-package 'gruvbox-theme)
+	  (straight-use-package 'spacemacs-theme)
+	  (straight-use-package 'ample-theme)
+	  (straight-use-package 'doom-themes)
+	  (straight-use-package 'yasnippet)
+	  (straight-use-package 'company)
+	  (straight-use-package 'company-lsp)
+	  (straight-use-package 'ess)
+	  (straight-use-package 'magit)
+	  (straight-use-package 'org-bullets)
+	  (straight-use-package 'aggressive-indent)
+	  (straight-use-package 'pdf-tools)
+	  (straight-use-package 'rainbow-delimiters)
+	  (straight-use-package 'ox-twbs)
+	  (straight-use-package 'smartparens)
+	  (straight-use-package 'flycheck)
+	  (straight-use-package 'lsp-mode)
+	  (straight-use-package 'dap-mode)
+	  (straight-use-package 'ccls)
+	  (straight-use-package 'lsp-java)
+	  (straight-use-package 'lsp-haskell)
+	  (straight-use-package 'auctex)
+	  (straight-use-package 'exwm)
+	  (straight-use-package 'pulseaudio-control)
+	#+end_src
 
 ** Evil
    #+begin_src emacs-lisp
-	 (straight-use-package 'evil)
 	 (add-to-list 'load-path (concat user-emacs-directory "straight/build/undo-tree"))
 	 (evil-mode)
 	 (setq evil-emacs-state-modes nil)
@@ -162,7 +198,6 @@
 
 ** W3M
    #+begin_src emacs-lisp
-	 (straight-use-package 'w3m)
 
 	 (require 'w3m)
 	 (w3m-display-mode 'plain)
@@ -271,7 +306,6 @@
 
 ** Hydra
    #+begin_src emacs-lisp
-	 (straight-use-package 'hydra)
    #+end_src
 
 *** Hydra-zoom
@@ -339,13 +373,11 @@
 
 ** Ivy
    #+begin_src emacs-lisp
-     (straight-use-package 'ivy)
      (ivy-mode)
    #+end_src
 
 *** Counsel
     #+begin_src emacs-lisp
-      (straight-use-package 'counsel)
       (global-set-key (kbd "M-x") 'counsel-M-x)
       (global-set-key (kbd "C-x C-f") 'counsel-find-file)
       (global-set-key (kbd "<f1> f") 'counsel-describe-function)
@@ -357,18 +389,15 @@
 
 *** Swiper
     #+begin_src emacs-lisp
-      (straight-use-package 'swiper)
       (global-set-key (kbd "\C-s") 'swiper)
     #+end_src
 
 ** Avy
    #+begin_src emacs-lisp
-     (straight-use-package 'avy)
    #+end_src
 
 ** Which Key
    #+begin_src emacs-lisp
-     (straight-use-package 'which-key)
      (which-key-mode)
      (setq which-key-show-prefix 'left)
    #+end_src
@@ -377,22 +406,18 @@
 
 *** Gruvbox Theme
     #+begin_src emacs-lisp
-      (straight-use-package 'gruvbox-theme)
     #+end_src
 
 *** Spacemacs Theme
     #+begin_src emacs-lisp
-      (straight-use-package 'spacemacs-theme)
     #+end_src
    
 *** Ample Theme
 	#+begin_src emacs-lisp
-	  (straight-use-package 'ample-theme)
 	#+end_src
 
 *** Doom Theme
 	#+begin_src emacs-lisp
-	  (straight-use-package 'doom-themes)
 	  ;;(doom-themes-org-config)
 	#+end_src
 
@@ -404,7 +429,6 @@
 ** Code Completion
 *** Yasnippet
 	#+begin_src emacs-lisp
-	  (straight-use-package 'yasnippet)
 	  (add-to-list 'load-path
 				   "~/.emacs.d/plugins/yasnippet")
 	  (require 'yasnippet)
@@ -413,13 +437,11 @@
 
 *** Company
 	#+begin_src emacs-lisp
-	  (straight-use-package 'company)
 	  (add-hook 'after-init-hook 'global-company-mode)
 	#+end_src
 	
 *** Company-lsp
    #+begin_src emacs-lisp
-	   (straight-use-package 'company-lsp)
 	   (require 'company-lsp)
 	   (push 'company-lsp company-backends)
 	   (setq company-lsp-cache-candidates t)
@@ -429,7 +451,6 @@
 
 ** ESS
    #+begin_src emacs-lisp
-	 (straight-use-package 'ess)
 	 (require 'ess-r-mode)
    #+end_src
 
@@ -442,7 +463,6 @@
 
 ** Magit
    #+begin_src emacs-lisp
-	 (straight-use-package 'magit)
    #+end_src
 
 *** Keybinds
@@ -473,7 +493,6 @@
 	
 ** Org Bullets
    #+begin_src emacs-lisp
-     (straight-use-package 'org-bullets)
      (defun org-bullet-mode()
        (org-bullets-mode 1))
      (add-hook 'org-mode-hook 'org-bullet-mode)
@@ -481,13 +500,11 @@
    
 ** Aggressive Indent
    #+begin_src emacs-lisp
-     (straight-use-package 'aggressive-indent)
      (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
    #+end_src
 
 ** Pdf Tools
    #+begin_src emacs-lisp
-     (straight-use-package 'pdf-tools)
      (pdf-tools-install)
      (add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode))
    #+end_src
@@ -522,18 +539,15 @@
 
 ** Rainbow Delimiters
    #+begin_src emacs-lisp
-     (straight-use-package 'rainbow-delimiters)
      (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
    #+end_src
 
 ** Ox Twbs
    #+begin_src emacs-lisp
-     (straight-use-package 'ox-twbs)
    #+end_src
 
 ** Smart Parens
    #+begin_src emacs-lisp
-	 (straight-use-package 'smartparens)
 	 (require 'smartparens-config)
 	 (add-hook 'org-mode-hook #'smartparens-mode)
 	 (add-hook 'prog-mode-hook #'smartparens-mode)
@@ -546,7 +560,6 @@
    
 ** Flycheck
    #+begin_src emacs-lisp
-	 (straight-use-package 'flycheck)
 	 (global-flycheck-mode)
 	 (with-eval-after-load 'flycheck
 	   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
@@ -554,7 +567,6 @@
 
 ** Lsp-mode
    #+begin_src emacs-lisp
-	 (straight-use-package 'lsp-mode)
 	 (require 'lsp-mode)
 	 (add-hook 'c++-mode-hook #'lsp)
 	 (add-hook 'c-mode-hook #'lsp)
@@ -566,7 +578,6 @@
 
 *** Dap-mode
 	#+begin_src emacs-lisp
-	  (straight-use-package 'dap-mode)
 	  (dap-mode 1)
 	  (dap-ui-mode 1)
 	  (dap-tooltip-mode 1)
@@ -576,7 +587,6 @@
 *** Ccls
    #+begin_src emacs-lisp
 	 (with-eval-after-load 'lsp
-	   (straight-use-package 'ccls)
 	   (require 'ccls)
 	   (setq ccls-executable "/usr/bin/ccls")
 	   (add-hook 'c-mode-hook #'lsp)
@@ -587,7 +597,6 @@
 *** Lsp-java
    #+begin_src emacs-lisp
 	 (with-eval-after-load 'lsp
-	   (straight-use-package 'lsp-java)
 	   (require 'dap-java)
 	   (require 'lsp-java))
    #+end_src
@@ -595,7 +604,6 @@
 *** Lsp-haskell
 	#+begin_src emacs-lisp
 	  (with-eval-after-load 'lsp
-		(straight-use-package 'lsp-haskell)
 		(require 'lsp-haskell))
 	#+end_src
 
@@ -642,7 +650,6 @@
    
 ** COMMENT AUCTex
    #+begin_src emacs-lisp
-	 (straight-use-package 'auctex)
 	 (setq TeX-auto-save t)
 	 (setq TeX-parse-self t)
 	 (setq Tex-save-query nil)
@@ -655,7 +662,6 @@
 
 ** Exwm
    #+begin_src emacs-lisp
-	 (straight-use-package 'exwm)
 	 (server-start)
 	 (require 'exwm)
 
@@ -754,5 +760,4 @@
 
 ** Pulseaudio-control
    #+begin_src emacs-lisp
-	 (straight-use-package 'pulseaudio-control)
    #+end_src
