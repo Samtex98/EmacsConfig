@@ -119,6 +119,10 @@
 
 (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
 
+(setq org-agenda-custom-commands
+			'(("o" "At the office" tags-todo "@office"
+				 ((org-agenda-overriding-header "Office")))))
+
 ;;;; Flyspell
 (add-hook 'org-mode-hook 'flyspell-mode)
 
